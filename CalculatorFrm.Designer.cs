@@ -63,13 +63,13 @@
             main_textBox.Location = new Point(25, 45);
             main_textBox.MaxLength = 100;
             main_textBox.Name = "main_textBox";
-            main_textBox.ReadOnly = true;
             main_textBox.ScrollBars = ScrollBars.Vertical;
             main_textBox.Size = new Size(423, 61);
             main_textBox.TabIndex = 0;
             main_textBox.Text = "0";
             main_textBox.TextAlign = HorizontalAlignment.Center;
             main_textBox.TextChanged += main_textBox_TextChanged;
+            main_textBox.KeyPress += main_textBox_KeyPress;
             main_textBox.MouseLeave += main_textBox_MouseLeave;
             main_textBox.MouseHover += main_textBox_MouseHover;
             // 
@@ -291,6 +291,7 @@
             // 
             // label_first_number
             // 
+            label_first_number.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label_first_number.Location = new Point(324, 4);
             label_first_number.Name = "label_first_number";
             label_first_number.Size = new Size(88, 38);

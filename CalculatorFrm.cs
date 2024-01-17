@@ -14,6 +14,7 @@ namespace SimpleCalc
             this.main_textBox.Text = "0";
             this.label_first_number.Text = "";
             this.label_operator.Text = "";
+            this.main_textBox.Focus();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -98,6 +99,7 @@ namespace SimpleCalc
             this.label_operator.Text = op_type;
             this.main_textBox.Text = "";
 
+            this.main_textBox.Focus();
 
         }
 
@@ -124,6 +126,11 @@ namespace SimpleCalc
 
         private void button_equal_Click(object sender, EventArgs e)
         {
+            Calculate();
+        }
+
+        private void Calculate()
+        {
             string firstNumberStr = this.label_first_number.Text;
             string secondNumberStr = this.main_textBox.Text;
 
@@ -132,6 +139,8 @@ namespace SimpleCalc
                 double result = PerformOperation(firstNumberStr, secondNumberStr, this.label_operator.Text);
 
                 this.main_textBox.Text = result.ToString();
+
+                this.main_textBox.Focus();
             }
             catch (Exception)
             {
@@ -318,5 +327,38 @@ namespace SimpleCalc
             return words.ToString();
         }
 
+        private void main_textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            string charactersAllowed = "0123456789+-/x.";
+
+            if (!char.IsControl(e.KeyChar) && !charactersAllowed.Contains(e.KeyChar) && e.KeyChar != '\r')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.' && ((TextBox)sender).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == '\r')
+            {
+                Calculate();
+                e.Handled = true;
+            }
+            switch (e.KeyChar)
+            {
+                case '+':
+                case '-':
+                case 'x':
+                case '/':
+                    e.Handled = true;
+                    operator_buttons(e.KeyChar.ToString());
+                    break;
+            }
+
+
+        }
     }
+
 }
