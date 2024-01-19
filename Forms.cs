@@ -10,24 +10,15 @@ namespace SimpleCalc
             InitializeComponent();
         }
 
-        void clear_all()
-        {
-            this.main_textBox.Text = "0";
-            this.label_first_number.Text = "";
-            this.label_operator.Text = "";
-            this.main_textBox.Focus();
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            clear_all();
+            UtilsForm.ClearAll(main_textBox, label_first_number, label_operator);
         }
 
         private void clear_Button_Click(object sender, EventArgs e)
         {
-            clear_all();
+            UtilsForm.ClearAll(main_textBox, label_first_number, label_operator);
         }
-
 
         private void Button_0_Click(object sender, EventArgs e)
         {
@@ -144,8 +135,7 @@ namespace SimpleCalc
 
             try
             {
-                double number;
-                double.TryParse(result, out number);
+                _ = double.TryParse(result, out double number);
                 digits = NumberToWords(number);
 
                 toolTip_read_number.Show(digits, main_textBox);

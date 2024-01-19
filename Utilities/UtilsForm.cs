@@ -2,6 +2,13 @@
 
 public static class UtilsForm
 {
+    public static void ClearAll(TextBox textBox, Label firstNumber, Label labelOperator)
+    {
+        textBox.Text = "0";
+        firstNumber.Text = "";
+        labelOperator.Text = "";
+        textBox.Focus();
+    }
 
     public static void InsertNumber(TextBox textbox, string Button_number)
     {
