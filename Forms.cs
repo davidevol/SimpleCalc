@@ -23,72 +23,62 @@ namespace SimpleCalc
             clear_all();
         }
 
-        private void clear_button_Click(object sender, EventArgs e)
+        private void clear_Button_Click(object sender, EventArgs e)
         {
             clear_all();
         }
 
 
-        private void button_0_Click(object sender, EventArgs e)
+        private void Button_0_Click(object sender, EventArgs e)
         {
-            numeric_calc("0");
+            UtilsForm.InsertNumber(main_textBox, "0");
         }
 
-        private void button_1_Click(object sender, EventArgs e)
+        private void Button_1_Click(object sender, EventArgs e)
         {
-            numeric_calc("1");
+            UtilsForm.InsertNumber(main_textBox, "1");
         }
-        private void button_2_Click(object sender, EventArgs e)
+        private void Button_2_Click(object sender, EventArgs e)
         {
-            numeric_calc("2");
-        }
-
-        private void button_3_Click(object sender, EventArgs e)
-        {
-            numeric_calc("3");
+            UtilsForm.InsertNumber(main_textBox, "2");
         }
 
-        private void button_4_Click(object sender, EventArgs e)
+        private void Button_3_Click(object sender, EventArgs e)
         {
-            numeric_calc("4");
+            UtilsForm.InsertNumber(main_textBox, "3");
         }
 
-        private void button_5_Click(object sender, EventArgs e)
+        private void Button_4_Click(object sender, EventArgs e)
         {
-            numeric_calc("5");
+            UtilsForm.InsertNumber(main_textBox, "4");
         }
 
-        private void button_6_Click(object sender, EventArgs e)
+        private void Button_5_Click(object sender, EventArgs e)
         {
-            numeric_calc("6");
+            UtilsForm.InsertNumber(main_textBox, "5");
         }
 
-        private void button_7_Click(object sender, EventArgs e)
+        private void Button_6_Click(object sender, EventArgs e)
         {
-            numeric_calc("7");
+            UtilsForm.InsertNumber(main_textBox, "6");
         }
 
-        private void button_8_Click(object sender, EventArgs e)
+        private void Button_7_Click(object sender, EventArgs e)
         {
-            numeric_calc("8");
+            UtilsForm.InsertNumber(main_textBox, "7");
         }
 
-        private void button_9_Click(object sender, EventArgs e)
+        private void Button_8_Click(object sender, EventArgs e)
         {
-            numeric_calc("9");
+            UtilsForm.InsertNumber(main_textBox, "8");
+        }
+
+        private void Button_9_Click(object sender, EventArgs e)
+        {
+            UtilsForm.InsertNumber(main_textBox, "9");
 
         }
-        void numeric_calc(string button_number)
-        {
-            if (this.main_textBox.Text == "0")
-            {
-                this.main_textBox.Text = button_number;
-            }
-            else
-            {
-                this.main_textBox.Text += button_number;
-            }
-        }
+
 
 
         void operator_buttons(string op_type)
@@ -104,55 +94,41 @@ namespace SimpleCalc
 
         }
 
-        private void button_plus_Click(object sender, EventArgs e)
+        private void Button_plus_Click(object sender, EventArgs e)
         {
             operator_buttons("+");
         }
 
 
-        private void button_minus_Click(object sender, EventArgs e)
+        private void Button_minus_Click(object sender, EventArgs e)
         {
             operator_buttons("-");
         }
 
-        private void button_mult_Click(object sender, EventArgs e)
+        private void Button_mult_Click(object sender, EventArgs e)
         {
             operator_buttons("x");
         }
 
-        private void button_div_Click(object sender, EventArgs e)
+        private void Button_div_Click(object sender, EventArgs e)
         {
             operator_buttons("/");
         }
 
-        private void button_equal_Click(object sender, EventArgs e)
+        private void Button_equal_Click(object sender, EventArgs e)
         {
             UtilsForm.Calculate(main_textBox, label_first_number, label_operator);
         }
 
-        private void button_decimal_Click(object sender, EventArgs e)
+        private void Button_decimal_Click(object sender, EventArgs e)
         {
-            InsertDecimalIfApplicable();
+            UtilsForm.InsertDecimalIfApplicable(main_textBox);
         }
 
-        private void InsertDecimalIfApplicable()
-        {
-            if (this.main_textBox.Text.Contains('.'))
-            {
-
-            }
-            else
-            {
-                numeric_calc(".");
-            }
-        }
-
-        private void button_erase_Click(object sender, EventArgs e)
+        private void Button_erase_Click(object sender, EventArgs e)
         {
             UtilsForm.EraseOne(main_textBox);
         }
-
-
 
         private void main_textBox_MouseHover(object sender, EventArgs e)
         {
@@ -296,7 +272,7 @@ namespace SimpleCalc
                     e.Handled = true;
                     return;
                 case '.':
-                    InsertDecimalIfApplicable();
+                    UtilsForm.InsertDecimalIfApplicable(main_textBox);
                     e.Handled = true;
                     return;
                 case '\r': // Enter

@@ -3,6 +3,30 @@
 public static class UtilsForm
 {
 
+    public static void InsertNumber(TextBox textbox, string Button_number)
+    {
+        if (textbox.Text == "0")
+        {
+            textbox.Text = Button_number;
+        }
+        else
+        {
+            textbox.Text += Button_number;
+        }
+    }
+
+    public static void InsertDecimalIfApplicable(TextBox textBox)
+    {
+        if (textBox.Text.Contains('.'))
+        {
+
+        }
+        else
+        {
+            InsertNumber(textBox, ".");
+        }
+    }
+
     public static void Calculate(TextBox textBox, Label firstNumber, Label labelOperator)
     {
         string firstNumberStr = firstNumber.Text;
