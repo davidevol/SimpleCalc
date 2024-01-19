@@ -12,152 +12,152 @@ namespace SimpleCalc
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            UtilsForm.ClearAll(main_textBox, label_first_number, label_operator);
+            UtilsForm.ClearAll(MainTextBox, LabelFirstNumber, LabelOperator);
         }
 
-        private void clear_Button_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
-            UtilsForm.ClearAll(main_textBox, label_first_number, label_operator);
+            UtilsForm.ClearAll(MainTextBox, LabelFirstNumber, LabelOperator);
         }
 
-        private void Button_0_Click(object sender, EventArgs e)
+        private void Button0_Click(object sender, EventArgs e)
         {
-            UtilsForm.InsertNumber(main_textBox, "0");
+            UtilsForm.InsertNumber(MainTextBox, "0");
         }
 
-        private void Button_1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            UtilsForm.InsertNumber(main_textBox, "1");
+            UtilsForm.InsertNumber(MainTextBox, "1");
         }
-        private void Button_2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
-            UtilsForm.InsertNumber(main_textBox, "2");
-        }
-
-        private void Button_3_Click(object sender, EventArgs e)
-        {
-            UtilsForm.InsertNumber(main_textBox, "3");
+            UtilsForm.InsertNumber(MainTextBox, "2");
         }
 
-        private void Button_4_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
-            UtilsForm.InsertNumber(main_textBox, "4");
+            UtilsForm.InsertNumber(MainTextBox, "3");
         }
 
-        private void Button_5_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
-            UtilsForm.InsertNumber(main_textBox, "5");
+            UtilsForm.InsertNumber(MainTextBox, "4");
         }
 
-        private void Button_6_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)
         {
-            UtilsForm.InsertNumber(main_textBox, "6");
+            UtilsForm.InsertNumber(MainTextBox, "5");
         }
 
-        private void Button_7_Click(object sender, EventArgs e)
+        private void Button6_Click(object sender, EventArgs e)
         {
-            UtilsForm.InsertNumber(main_textBox, "7");
+            UtilsForm.InsertNumber(MainTextBox, "6");
         }
 
-        private void Button_8_Click(object sender, EventArgs e)
+        private void Button7_Click(object sender, EventArgs e)
         {
-            UtilsForm.InsertNumber(main_textBox, "8");
+            UtilsForm.InsertNumber(MainTextBox, "7");
         }
 
-        private void Button_9_Click(object sender, EventArgs e)
+        private void Button8_Click(object sender, EventArgs e)
         {
-            UtilsForm.InsertNumber(main_textBox, "9");
+            UtilsForm.InsertNumber(MainTextBox, "8");
+        }
+
+        private void Button9_Click(object sender, EventArgs e)
+        {
+            UtilsForm.InsertNumber(MainTextBox, "9");
 
         }
 
 
-
-        void operator_buttons(string op_type)
+        void InsertOperator(string operatorType)
         {
-            if (this.main_textBox.Text != "")
+            if (this.MainTextBox.Text != "")
             {
-                this.label_first_number.Text = this.main_textBox.Text;
+                this.LabelFirstNumber.Text = this.MainTextBox.Text;
             }
-            this.label_operator.Text = op_type;
-            this.main_textBox.Text = "";
+            this.LabelOperator.Text = operatorType;
+            this.MainTextBox.Text = "";
 
-            this.main_textBox.Focus();
+            this.MainTextBox.Focus();
 
         }
 
-        private void Button_plus_Click(object sender, EventArgs e)
+        private void ButtonPlus_Click(object sender, EventArgs e)
         {
-            operator_buttons("+");
+            InsertOperator("+");
         }
 
 
-        private void Button_minus_Click(object sender, EventArgs e)
+        private void ButtonMinus_Click(object sender, EventArgs e)
         {
-            operator_buttons("-");
+            InsertOperator("-");
         }
 
-        private void Button_mult_Click(object sender, EventArgs e)
+        private void ButtonMult_Click(object sender, EventArgs e)
         {
-            operator_buttons("x");
+            InsertOperator("x");
         }
 
-        private void Button_div_Click(object sender, EventArgs e)
+        private void ButtonDiv_Click(object sender, EventArgs e)
         {
-            operator_buttons("/");
+            InsertOperator("/");
         }
 
-        private void Button_equal_Click(object sender, EventArgs e)
+        private void ButtonEqual_Click(object sender, EventArgs e)
         {
-            UtilsForm.Calculate(main_textBox, label_first_number, label_operator);
+            UtilsForm.Calculate(MainTextBox, LabelFirstNumber, LabelOperator);
         }
 
-        private void Button_decimal_Click(object sender, EventArgs e)
+        private void ButtonDecimal_Click(object sender, EventArgs e)
         {
-            UtilsForm.InsertDecimalIfApplicable(main_textBox);
+            UtilsForm.InsertDecimalIfApplicable(MainTextBox);
         }
 
-        private void Button_erase_Click(object sender, EventArgs e)
+        private void ButtonErase_Click(object sender, EventArgs e)
         {
-            UtilsForm.EraseOne(main_textBox);
+            UtilsForm.EraseOne(MainTextBox);
         }
 
-        private void main_textBox_MouseHover(object sender, EventArgs e)
+        private void MainTextBox_MouseHover(object sender, EventArgs e)
         {
 
-            toolTip_read_number.AutoPopDelay = 30000;
-            toolTip_read_number.InitialDelay = 1000;
-            toolTip_read_number.ReshowDelay = 500;
+            ToolTipReadNumber.AutoPopDelay = 30000;
+            ToolTipReadNumber.InitialDelay = 1000;
+            ToolTipReadNumber.ReshowDelay = 500;
 
-            string result = this.main_textBox.Text;
+            string result = this.MainTextBox.Text;
             string digits = "It was not possible to read this number.";
 
 
 
             try
             {
-                _ = double.TryParse(result, out double number);
-                digits = NumberToWords(number);
-
-                toolTip_read_number.Show(digits, main_textBox);
+                if (double.TryParse(result, out double number))
+                {
+                    digits = NumberToWords(number);
+                    ToolTipReadNumber.Show(digits, MainTextBox);
+                }
             }
             catch (Exception)
             {
-                toolTip_read_number.Show(digits, main_textBox);
+                ToolTipReadNumber.Show(digits, MainTextBox);
             }
         }
 
-        private void main_textBox_MouseLeave(object sender, EventArgs e)
+        private void MainTextBox_MouseLeave(object sender, EventArgs e)
         {
-            toolTip_read_number.Hide(main_textBox);
+            ToolTipReadNumber.Hide(MainTextBox);
         }
 
-        private void main_textBox_TextChanged(object sender, EventArgs e)
+        private void MainTextBox_TextChanged(object sender, EventArgs e)
         {
-            int textBoxLenght = main_textBox.Text.Length;
+            int textBoxLenght = MainTextBox.Text.Length;
 
             if (textBoxLenght > 100)
             {
-                main_textBox.Text = main_textBox.Text[..100];
+                MainTextBox.Text = MainTextBox.Text[..100];
             }
         }
 
@@ -166,7 +166,7 @@ namespace SimpleCalc
             int integerPart = (int)Math.Floor(number);
             int decimalPart = (int)Math.Round((number - integerPart) * 100);
 
-            StringBuilder words = new StringBuilder();
+            StringBuilder words = new();
 
             if (integerPart == 0 && decimalPart == 0)
                 return "zero";
@@ -197,7 +197,7 @@ namespace SimpleCalc
             if (number < 0)
                 return "menos " + NumberToWords(Math.Abs(number));
 
-            StringBuilder words = new StringBuilder();
+            StringBuilder words = new();
 
             if ((number / 1000000000) > 0)
             {
@@ -258,15 +258,15 @@ namespace SimpleCalc
                 case '-':
                 case 'x':
                 case '/':
-                    operator_buttons(e.KeyChar.ToString());
+                    InsertOperator(e.KeyChar.ToString());
                     e.Handled = true;
                     return;
                 case '.':
-                    UtilsForm.InsertDecimalIfApplicable(main_textBox);
+                    UtilsForm.InsertDecimalIfApplicable(MainTextBox);
                     e.Handled = true;
                     return;
                 case '\r': // Enter
-                    UtilsForm.Calculate(main_textBox, label_first_number, label_operator);
+                    UtilsForm.Calculate(MainTextBox, LabelFirstNumber, LabelOperator);
                     e.Handled = true;
                     return;
             }
