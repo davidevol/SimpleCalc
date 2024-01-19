@@ -1,6 +1,6 @@
 ﻿namespace SimpleCalc
 {
-    partial class CalculatorFrm
+    partial class Forms
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalculatorFrm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Forms));
             main_textBox = new TextBox();
             button_7 = new Button();
             button_8 = new Button();

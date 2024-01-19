@@ -2,9 +2,9 @@ using System.Text;
 
 namespace SimpleCalc
 {
-    public partial class CalculatorFrm : Form
+    public partial class Forms : Form
     {
-        public CalculatorFrm()
+        public Forms()
         {
             InitializeComponent();
         }
