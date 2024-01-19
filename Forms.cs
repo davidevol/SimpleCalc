@@ -132,9 +132,14 @@ namespace SimpleCalc
 
         private void button_decimal_Click(object sender, EventArgs e)
         {
-            if (this.main_textBox.Text.Contains(".") == true)
+            InsertDecimalIfApplicable();
+        }
+
+        private void InsertDecimalIfApplicable()
+        {
+            if (this.main_textBox.Text.Contains('.'))
             {
-                return;
+
             }
             else
             {
@@ -142,13 +147,12 @@ namespace SimpleCalc
             }
         }
 
-
         private void button_erase_Click(object sender, EventArgs e)
         {
             UtilsForm.EraseOne(main_textBox);
         }
 
-        
+
 
         private void main_textBox_MouseHover(object sender, EventArgs e)
         {
@@ -164,7 +168,7 @@ namespace SimpleCalc
 
             try
             {
-            double number;
+                double number;
                 double.TryParse(result, out number);
                 digits = NumberToWords(number);
 
@@ -276,20 +280,10 @@ namespace SimpleCalc
         private void main_textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
 
-            string charactersAllowed = "0123456789+-/x.";
+            string charactersAllowed = "0123456789+-/x.\r";
 
-            if (!char.IsControl(e.KeyChar) && !charactersAllowed.Contains(e.KeyChar) && e.KeyChar != '\r')
+            if (!char.IsControl(e.KeyChar) && !charactersAllowed.Contains(e.KeyChar))
             {
-                e.Handled = true;
-            }
-
-            if (e.KeyChar == '.' && ((TextBox)sender).Text.IndexOf('.') > -1)
-            {
-                e.Handled = true;
-            }
-            if (e.KeyChar == '\r')
-            {
-                UtilsForm.Calculate(main_textBox, label_first_number, label_operator);
                 e.Handled = true;
             }
             switch (e.KeyChar)
@@ -298,12 +292,18 @@ namespace SimpleCalc
                 case '-':
                 case 'x':
                 case '/':
-                    e.Handled = true;
                     operator_buttons(e.KeyChar.ToString());
-                    break;
+                    e.Handled = true;
+                    return;
+                case '.':
+                    InsertDecimalIfApplicable();
+                    e.Handled = true;
+                    return;
+                case '\r': // Enter
+                    UtilsForm.Calculate(main_textBox, label_first_number, label_operator);
+                    e.Handled = true;
+                    return;
             }
-
-
         }
     }
 

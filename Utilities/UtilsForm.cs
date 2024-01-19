@@ -24,14 +24,14 @@ public static class UtilsForm
     }
 
     public static void EraseOne(TextBox textBox)
-        {
-            string currentText = textBox.Text;
+    {
+        string currentText = textBox.Text;
 
-            if (!string.IsNullOrEmpty(currentText))
-            {
+        if (!string.IsNullOrEmpty(currentText))
+        {
             textBox.Text = currentText.Substring(0, currentText.Length - 1);
-            }
         }
+    }
 
     private static double PerformOperation(string firstNumberStr, string secondNumberStr, string operatorStr)
     {
