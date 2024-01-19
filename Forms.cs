@@ -127,27 +127,7 @@ namespace SimpleCalc
 
         private void button_equal_Click(object sender, EventArgs e)
         {
-            Calculate();
-        }
-
-        private void Calculate()
-        {
-            string firstNumberStr = this.label_first_number.Text;
-            string secondNumberStr = this.main_textBox.Text;
-
-            try
-            {     
-                double result = UtilsForm.PerformOperation(firstNumberStr, secondNumberStr, this.label_operator.Text);
-
-                this.main_textBox.Text = result.ToString();
-
-                this.main_textBox.Focus();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Make sure that the operators are accompanied by numerical values.", ":/");
-            }
-
+            UtilsForm.Calculate(main_textBox, label_first_number, label_operator);
         }
 
         private void button_decimal_Click(object sender, EventArgs e)
@@ -309,7 +289,7 @@ namespace SimpleCalc
             }
             if (e.KeyChar == '\r')
             {
-                Calculate();
+                UtilsForm.Calculate(main_textBox, label_first_number, label_operator);
                 e.Handled = true;
             }
             switch (e.KeyChar)

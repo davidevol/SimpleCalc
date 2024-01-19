@@ -3,6 +3,25 @@
 public static class UtilsForm
 {
 
+    public static void Calculate(TextBox textBox, Label firstNumber, Label labelOperator)
+    {
+        string firstNumberStr = firstNumber.Text;
+        string secondNumberStr = textBox.Text;
+
+        try
+        {
+            double result = PerformOperation(firstNumberStr, secondNumberStr, labelOperator.Text);
+
+            textBox.Text = result.ToString();
+
+            textBox.Focus();
+        }
+        catch (Exception)
+        {
+            MessageBox.Show("Make sure that the operators are accompanied by numerical values.", ":/");
+        }
+
+    }
 
     public static void EraseOne(TextBox textBox)
         {
@@ -14,7 +33,7 @@ public static class UtilsForm
             }
         }
 
-    public static double PerformOperation(string firstNumberStr, string secondNumberStr, string operatorStr)
+    private static double PerformOperation(string firstNumberStr, string secondNumberStr, string operatorStr)
     {
         double fn = double.Parse(firstNumberStr);
         double sn = double.Parse(secondNumberStr);
