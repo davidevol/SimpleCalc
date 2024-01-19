@@ -1,3 +1,4 @@
+using SimpleCalc.Utilities;
 using System.Text;
 
 namespace SimpleCalc
@@ -135,8 +136,8 @@ namespace SimpleCalc
             string secondNumberStr = this.main_textBox.Text;
 
             try
-            {
-                double result = PerformOperation(firstNumberStr, secondNumberStr, this.label_operator.Text);
+            {     
+                double result = UtilsForm.PerformOperation(firstNumberStr, secondNumberStr, this.label_operator.Text);
 
                 this.main_textBox.Text = result.ToString();
 
@@ -160,49 +161,14 @@ namespace SimpleCalc
                 numeric_calc(".");
             }
         }
-        private double PerformOperation(string firstNumberStr, string secondNumberStr, string operatorStr)
-        {
-            double fn = double.Parse(firstNumberStr);
-            double sn = double.Parse(secondNumberStr);
-            double result = 0;
 
-            switch (operatorStr)
-            {
-                case "+":
-                    result = fn + sn;
-                    break;
-                case "-":
-                    result = fn - sn;
-                    break;
-                case "x":
-                    result = fn * sn;
-                    break;
-                case "/":
-                    result = fn / sn;
-                    break;
-
-                default:
-                    result = 0;
-                    break;
-            }
-
-            return result;
-        }
 
         private void button_erase_Click(object sender, EventArgs e)
         {
-            EraseOne();
+            UtilsForm.EraseOne(main_textBox);
         }
 
-        private void EraseOne()
-        {
-            string currentText = this.main_textBox.Text;
-
-            if (!string.IsNullOrEmpty(currentText))
-            {
-                this.main_textBox.Text = currentText.Substring(0, currentText.Length - 1);
-            }
-        }
+        
 
         private void main_textBox_MouseHover(object sender, EventArgs e)
         {
@@ -212,13 +178,13 @@ namespace SimpleCalc
             toolTip_read_number.ReshowDelay = 500;
 
             string result = this.main_textBox.Text;
-            double number;
             string digits = "It was not possible to read this number.";
 
 
 
             try
             {
+            double number;
                 double.TryParse(result, out number);
                 digits = NumberToWords(number);
 
